@@ -17,7 +17,8 @@ RSpec.describe 'User Sign up', type: :feature do
       fill_in 'user_password_confirmation', with: 'password'
       click_button 'Create Account'
     end.to change(User, :count).by(1)
-    expect(current_path).to eql(users_path.to_s+"/#{last.id}")
+    expect(current_path).to eql(users_path.to_s+".#{User.last.id}")
+    expect(page).to have_content('User Created')
     expect(page).to have_content('Luis Preza')
   end
 end
