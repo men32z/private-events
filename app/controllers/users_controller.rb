@@ -8,7 +8,7 @@ class UsersController < ApplicationController
       if @user.save
         log_in(@user)
         flash[:success] = "User Created"
-        redirect_to users_path @user
+        redirect_to user_path(@user)
       else
         flash.now[:danger] = 'Some Errors in Form'
         render 'new'
@@ -16,8 +16,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(session[:user_id])
-    redirect_to new_users_path if !@user
+    @user = params[:id] ? User.find(params[:id]) : nil
+    redirect_to new_user_path if !@user
   end
 
   private

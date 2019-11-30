@@ -24,7 +24,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
   # The RSpec testing framework
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 4.0.0.beta3'
 
   # Capybara, the library that allows us to interact with the browser using Ruby
   gem 'capybara'

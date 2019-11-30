@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'User Sign up', type: :feature do
   scenario 'Sign up valid' do
-    visit new_users_path
+    visit new_user_path
     expect(page).to have_content 'Sign Up'
     assert_selector "form[action='#{users_path}']"
     assert_selector "form[method='post']"
@@ -17,7 +17,7 @@ RSpec.describe 'User Sign up', type: :feature do
       fill_in 'user_password_confirmation', with: 'password'
       click_button 'Create Account'
     end.to change(User, :count).by(1)
-    expect(current_path).to eql(users_path.to_s+".#{User.last.id}")
+    expect(current_path).to eql(user_path(User.last.id))
     expect(page).to have_content('User Created')
     expect(page).to have_content('Luis Preza')
   end
