@@ -15,6 +15,5 @@ module SessionsHelper
   def sign_out
     session[:user_id] = nil
     @current_user = nil
-    redirect_to home_path
   end
 end
