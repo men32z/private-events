@@ -4,11 +4,8 @@ class CreateEvents < ActiveRecord::Migration[6.0]
       t.string :name
       t.datetime :date
       t.text :description
-      t.integer :user_id
 
       t.timestamps
     end
-
-    add_foreign_key :events, :users
   end
 end

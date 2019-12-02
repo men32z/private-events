@@ -5,8 +5,7 @@ RSpec.describe Event, type: :model do
   let(:valid_event_without_user) {{ name:'event 1', description: "a nice description", date: Date.tomorrow}}
   it "is valid with valid attributes" do
     user = User.create(valid_user)
-    new_event = Event.new(valid_event_without_user)
-    new_event.user_id = user.id
+    new_event = user.events.build(valid_event_without_user)
     expect(new_event).to be_valid
   end
 
