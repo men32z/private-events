@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'User feature', type: :feature do
   let(:user_valid) {{name:"mike guasausky", email: "miky@monsteruniversity.com", password:'password', password_confirmation: 'password'}}
+  let(:valid_event_without_user) {{ name:'event 1', description: "a nice description", date: Date.tomorrow}}
 
   scenario 'Sign up valid' do
     visit new_user_path
@@ -37,5 +38,13 @@ RSpec.describe 'User feature', type: :feature do
   scenario 'User not found in #show' do
     visit user_path(5)
     expect(page).to have_content 'User not found'
+  end
+
+  scenario "User's events in #show" do
+    user = User.create(user_valid)
+    event = user.events.build(valid_event_without_user)
+    event.save
+    visit user_path(user)
+    expect(page).to have_content event.name
   end
 end
