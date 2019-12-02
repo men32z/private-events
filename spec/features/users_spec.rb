@@ -33,4 +33,9 @@ RSpec.describe 'User feature', type: :feature do
     expect(page).to have_content custom_name
     expect(page).to have_content "Profile"
   end
+
+  scenario 'User not found in #show' do
+    visit user_path(5)
+    expect(page).to have_content 'User not found'
+  end
 end

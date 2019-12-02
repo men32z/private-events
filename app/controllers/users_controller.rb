@@ -16,8 +16,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = params[:id] ? User.find(params[:id]) : nil
-    redirect_to new_user_path if !@user
+    @user = params[:id] ? User.find_by(id: params[:id]) : nil
+    if !@user
+      flash[:danger] = 'User not found'
+      redirect_to home_path
+    end
   end
 
   private

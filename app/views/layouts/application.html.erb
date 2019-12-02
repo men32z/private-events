@@ -11,6 +11,8 @@
 
   <body>
     <%= render 'layouts/header' %>
+    <%= render 'shared/msg' if !flash.empty? %>
+
     <%= yield %>
   </body>
 </html>
