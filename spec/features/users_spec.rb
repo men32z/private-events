@@ -1,6 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe 'User Sign up', type: :feature do
+RSpec.describe 'User feature', type: :feature do
+  let(:user_valid) {{name:"mike guasausky", email: "miky@monsteruniversity.com", password:'password', password_confirmation: 'password'}}
+
   scenario 'Sign up valid' do
     visit new_user_path
     expect(page).to have_content 'Sign Up'
@@ -20,5 +22,15 @@ RSpec.describe 'User Sign up', type: :feature do
     expect(current_path).to eql(user_path(User.last.id))
     expect(page).to have_content('User Created')
     expect(page).to have_content('Luis Preza')
+  end
+
+  scenario 'User Profile #show' do
+    custom_name = "Mike Was"
+    user = User.new(user_valid)
+    user.name = custom_name
+    user.save
+    visit user_path(user)
+    expect(page).to have_content custom_name
+    expect(page).to have_content "Profile"
   end
 end
