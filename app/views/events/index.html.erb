@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Event's List</h1>
+      <hr>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <h3>Events</h3>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @events.each do |event| %>
+            <tr>
+              <td><%= event.id %></td>
+              <td><%= event.name %></td>
+            </tr>
+          <% end  %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
