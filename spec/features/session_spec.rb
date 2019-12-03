@@ -3,7 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe 'Session feature', type: :feature do
-  let(:user_valid) { { name: 'mike guasausky', email: 'miky@monsteruniversity.com', password: 'password', password_confirmation: 'password' } }
+  let(:user_valid) do
+    has_x = { name: 'mike', email: 'mikew@monsterinc.com' }
+    has_x[:password] = 'wasausky'
+    has_x[:password_confirmation] = 'wasausky'
+    has_x
+  end
 
   scenario 'login with form' do
     visit login_path
@@ -34,7 +39,7 @@ RSpec.describe 'Session feature', type: :feature do
   end
 
   scenario 'login invalid empty form' do
-    user = User.create(user_valid)
+    User.create(user_valid)
     visit login_path
 
     click_button 'Log in'

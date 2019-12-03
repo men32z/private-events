@@ -3,7 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
-  let(:user_valid) { { name: 'mike guasausky', email: 'miky@monsteruniversity.com', password: 'password', password_confirmation: 'password' } }
+  let(:user_valid) do
+    has_x = { name: 'mike', email: 'mikew@monsterinc.com' }
+    has_x[:password] = 'wasausky'
+    has_x[:password_confirmation] = 'wasausky'
+    has_x
+  end
 
   describe 'DELETE #destroy' do
     it 'return redirection' do
