@@ -45,6 +45,7 @@ RSpec.describe 'Session feature', type: :feature do
     expect do
       fill_in :event_name, with: "Event 1"
       fill_in :event_description, with: "this is a nice description"
+      fill_in :event_date, with: "2005-02-17 11:52:00"
       click_button "Create Event"
     end.to change(Event, :count).by(1)
   end
