@@ -48,4 +48,14 @@ RSpec.describe 'Session feature', type: :feature do
       click_button "Create Event"
     end.to change(Event, :count).by(1)
   end
+
+  scenario "show all Event's attendees" do
+    creator = User.create(user_valid)
+    event = creator.events.build(event_valid)
+    event.save
+    attendee = User.create(name:'Sulley', email:'sulley@monsterinc.com', password:'Sullivan')
+    UserEvent.create(user_id: attendee.id, event_id: event.id)
+    visit event_path(event)
+    expect(page).to have_content attendee.name
+  end
 end

@@ -47,4 +47,14 @@ RSpec.describe 'User feature', type: :feature do
     visit user_path(user)
     expect(page).to have_content event.name
   end
+
+  scenario "show all Event's attendees" do
+    creator = User.create(user_valid)
+    event = creator.events.build(valid_event_without_user)
+    event.save
+    attendee = User.create(name:'Sulley', email:'sulley@monsterinc.com', password:'Sullivan')
+    UserEvent.create(user_id: attendee.id, event_id: event.id)
+    visit user_path(attendee)
+    expect(page).to have_content event.name
+  end
 end
