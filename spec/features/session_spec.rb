@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Session feature', type: :feature do
-  let(:user_valid) {{name:"mike guasausky", email: "miky@monsteruniversity.com", password:'password', password_confirmation: 'password'}}
+  let(:user_valid) { { name: 'mike guasausky', email: 'miky@monsteruniversity.com', password: 'password', password_confirmation: 'password' } }
 
   scenario 'login with form' do
     visit login_path
-    expect(page).to have_content "Log in"
+    expect(page).to have_content 'Log in'
     assert_selector "input[name='name']"
     assert_selector "input[name='user_id']"
     assert_selector "input[type='submit']"
@@ -15,8 +17,8 @@ RSpec.describe 'Session feature', type: :feature do
     user = User.create(user_valid)
     visit login_path
 
-    fill_in "name", with: user.name
-    click_button "Log in"
+    fill_in 'name', with: user.name
+    click_button 'Log in'
     expect(page).to have_content user.name
     expect(current_path).to eq(user_path(user))
   end
@@ -25,8 +27,8 @@ RSpec.describe 'Session feature', type: :feature do
     user = User.create(user_valid)
     visit login_path
 
-    fill_in "user_id", with: user.id
-    click_button "Log in"
+    fill_in 'user_id', with: user.id
+    click_button 'Log in'
     expect(page).to have_content user.name
     expect(current_path).to eq(user_path(user))
   end
@@ -35,34 +37,34 @@ RSpec.describe 'Session feature', type: :feature do
     user = User.create(user_valid)
     visit login_path
 
-    click_button "Log in"
-    expect(page).to have_content "user not found"
+    click_button 'Log in'
+    expect(page).to have_content 'user not found'
   end
 
   scenario 'login invalid wrong name' do
     user = User.create(user_valid)
     visit login_path
 
-    fill_in "name", with: user.name + "asdfa"
-    click_button "Log in"
-    expect(page).to have_content "user not found"
+    fill_in 'name', with: user.name + 'asdfa'
+    click_button 'Log in'
+    expect(page).to have_content 'user not found'
   end
 
   scenario 'login invalid wrong id' do
     user = User.create(user_valid)
     visit login_path
 
-    fill_in "user_id", with: user.id + 5
-    click_button "Log in"
-    expect(page).to have_content "user not found"
+    fill_in 'user_id', with: user.id + 5
+    click_button 'Log in'
+    expect(page).to have_content 'user not found'
   end
 
   scenario 'logout' do
     user = User.create(user_valid)
     visit login_path
 
-    fill_in "user_id", with: user.id
-    click_button "Log in"
+    fill_in 'user_id', with: user.id
+    click_button 'Log in'
     expect(current_path).to eq(user_path(user))
 
     find("a[href='#{logout_path}']").click

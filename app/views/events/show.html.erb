@@ -12,7 +12,7 @@
     <div class="col-sm-12 col-md-6">
 
       <h3>Event's Attendees</h3>
-      <table class="table table-striped">
+      <table class="table table-striped table-hover">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -21,7 +21,7 @@
         </thead>
         <tbody>
           <% @event.attendees.each do |attendee| %>
-            <tr>
+            <tr class="cursor-pointer" onclick="location.href = '<%= user_path(attendee.id) %>';">
               <td><%= attendee.id %></td>
               <td><%= attendee.name %></td>
             </tr>

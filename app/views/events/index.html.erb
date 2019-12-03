@@ -1,12 +1,18 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
-      <h1>Event's List</h1>
+      <h1>
+        Event's List
+        &nbsp;&nbsp;&nbsp;
+        <% if logged_in? %>
+          <%= link_to "New Event", new_event_path, class: "btn btn-success ml-auto" %>
+        <% end %>
+        </h1>
       <hr>
     </div>
     <div class="col-sm-12 col-md-6">
-      <h3>Events</h3>
-      <table class="table table-striped">
+      <h3>Upcoming Events</h3>
+      <table class="table table-striped table-hover">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -14,8 +20,27 @@
           </tr>
         </thead>
         <tbody>
-          <% @events.each do |event| %>
-            <tr>
+          <% @events_upcoming.each do |event| %>
+            <tr class="cursor-pointer" onclick="location.href = '<%= event_path(event.id) %>';">
+              <td><%= event.id %></td>
+              <td><%= event.name %></td>
+            </tr>
+          <% end  %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <h3>Previous Events</h3>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @events_past.each do |event| %>
+            <tr class="cursor-pointer" onclick="location.href = '<%= event_path(event.id) %>';">
               <td><%= event.id %></td>
               <td><%= event.name %></td>
             </tr>

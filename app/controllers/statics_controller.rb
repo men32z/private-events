@@ -1,5 +1,5 @@
-class StaticsController < ApplicationController
-  def index
+# frozen_string_literal: true
 
-  end
+class StaticsController < ApplicationController
+  def index; end
 end

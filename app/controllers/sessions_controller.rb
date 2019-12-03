@@ -1,16 +1,14 @@
-class SessionsController < ApplicationController
-  def new
+# frozen_string_literal: true
 
-  end
+class SessionsController < ApplicationController
+  def new; end
 
   def create
-    if !params[:user_id]&.empty?
-      @user = User.find_by(id: params[:user_id])
-    elsif !params[:name]&.empty?
-      @user = User.find_by(name: params[:name])
-    else
-      @user = nil
-    end
+    @user = if !params[:user_id]&.empty?
+              User.find_by(id: params[:user_id])
+            elsif !params[:name]&.empty?
+              User.find_by(name: params[:name])
+            end
 
     if @user
       log_in(@user)
