@@ -19,10 +19,15 @@ class UsersController < ApplicationController
 
   def show
     @user = params[:id] ? User.find_by(id: params[:id]) : nil
-    return if @user
-
-    flash[:danger] = 'User not found'
-    redirect_to home_path
+    if @user
+      @created_upcoming_events = @user.events.upcoming
+      @created_past_events = @user.events.past
+      @attended_upcoming_events = @user.attended_events.upcoming
+      @attended_past_events = @user.attended_events.past
+    else
+      flash[:danger] = 'User not found'
+      redirect_to home_path
+    end
   end
 
   private

@@ -20,12 +20,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @user.events.upcoming.each do |event| %>
-            <tr class="cursor-pointer" onclick="location.href = '<%= event_path(event.id) %>';">
-              <td><%= event.id %></td>
-              <td><%= event.name %></td>
-            </tr>
-          <% end  %>
+          <%= render @created_upcoming_events %>
         </tbody>
       </table>
 
@@ -39,12 +34,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @user.events.past.each do |event| %>
-            <tr class="cursor-pointer" onclick="location.href = '<%= event_path(event.id) %>';">
-              <td><%= event.id %></td>
-              <td><%= event.name %></td>
-            </tr>
-          <% end  %>
+          <%= render @created_past_events %>
         </tbody>
       </table>
     </div>
@@ -61,12 +51,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @user.attended_events.upcoming.each do |event| %>
-            <tr class="cursor-pointer" onclick="location.href = '<%= event_path(event.id) %>';">
-              <td><%= event.id %></td>
-              <td><%= event.name %></td>
-            </tr>
-          <% end  %>
+          <%= render @attended_upcoming_events %>
         </tbody>
       </table>
 
@@ -79,12 +64,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @user.attended_events.past.each do |event| %>
-            <tr class="cursor-pointer" onclick="location.href = '<%= event_path(event.id) %>';">
-              <td><%= event.id %></td>
-              <td><%= event.name %></td>
-            </tr>
-          <% end  %>
+          <%= render @attended_past_events %>
         </tbody>
       </table>
     </div>

@@ -20,12 +20,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @events_upcoming.each do |event| %>
-            <tr class="cursor-pointer" onclick="location.href = '<%= event_path(event.id) %>';">
-              <td><%= event.id %></td>
-              <td><%= event.name %></td>
-            </tr>
-          <% end  %>
+          <%= render @events_upcoming  %>
         </tbody>
       </table>
     </div>
@@ -39,12 +34,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @events_past.each do |event| %>
-            <tr class="cursor-pointer" onclick="location.href = '<%= event_path(event.id) %>';">
-              <td><%= event.id %></td>
-              <td><%= event.name %></td>
-            </tr>
-          <% end  %>
+          <%= render @events_past  %>
         </tbody>
       </table>
     </div>
