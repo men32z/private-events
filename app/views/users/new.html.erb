@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3 mb-3">
+      <h1>Sign Up</h1>
+    </div>
+    <div class="col-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3">
+      <%= form_with model: @user, local:true do |f| %>
+        <%= f.label "Name" %>
+        <%= f.text_field :name, class: "form-control" %>
+
+        <%= f.label "Email" %>
+        <%= f.text_field :email, class: "form-control" %>
+
+        <%= f.label "Password" %>
+        <%= f.password_field :password, class: "form-control" %>
+
+        <%= f.label "Confirm Password" %>
+        <%= f.password_field :password_confirmation,  class: "form-control" %>
+        <br>
+        <%= f.submit "Create Account", class:"btn btn-success" %>
+      <% end  %>
+    </div>
+  </div>
+</div>
